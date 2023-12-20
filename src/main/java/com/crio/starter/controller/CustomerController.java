@@ -29,7 +29,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/test")
+    @GetMapping("/test/{name}")
     public String test(@PathVariable String name) {
         return new String("Hello "+name);
     }

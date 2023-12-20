@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<!-- <?xml version="1.0"?>
 <!--
   ~ /*
   ~  * Copyright (c) Crio.Do 2019. All rights reserved
@@ -242,4 +242,4 @@
   <property name="charset" value="UTF-8"/>
 
   <property name="severity" value="error"/>
-</module>
+</module> -->

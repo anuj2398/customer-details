@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.18'
+    id 'org.springframework.boot' version '2.7.1'
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
     id 'com.github.spotbugs' version '4.7.1'
@@ -7,7 +7,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'com.customer'
+group = 'com.crio'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -61,12 +61,7 @@ jacoco {
     toolVersion = "0.8.8"
 }
 
-// jacocoTestReport {
-//     reports {
-//         xml.enabled true
-//         csv.enabled false
-//     }
-// }
+
 
 
 test {

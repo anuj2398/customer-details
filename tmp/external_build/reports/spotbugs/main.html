@@ -74,20 +74,24 @@
       <p>Code analyzed:</p>
       <ul>
          <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\App.class</li>
-         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\controller\GreetingsController.class</li>
-         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\data\GreetingsEntity.class</li>
-         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\exchange\ResponseDto.class</li>
-         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\repository\GreetingsRepository.class</li>
-         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\service\GreetingsService.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\controller\CustomerController.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\data\Customer.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\enums\CustomerGroup.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\enums\Occupation.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\exception\AgeBelow18Exception.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\exception\CustomerNotFoundException.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\exchange\CustomerDetailsRequest.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\repository\CustomerRepository.class</li>
+         <li>C:\Projects\customer-details\tmp\external_build\classes\java\main\com\crio\starter\service\CustomerService.class</li>
       </ul>
       <p>
          <br/>
          <br/>
       </p>
       <h2>Metrics</h2>
-      <p>51 lines of code analyzed,
-	in 6 classes, 
-	in 6 packages.</p>
+      <p>199 lines of code analyzed,
+	in 10 classes, 
+	in 8 packages.</p>
       <table width="500" cellpadding="5" cellspacing="2">
          <tr class="tableheader">
             <th align="left">Metric</th>
@@ -101,18 +105,18 @@
          </tr>
          <tr class="tablerow1">
             <td>Medium Priority Warnings</td>
-            <td align="right"/>
-            <td align="right">0.00</td>
+            <td align="right">1</td>
+            <td align="right">5.03</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>0</b>
+               <b>1</b>
             </td>
             <td align="right">
-               <b>0.00</b>
+               <b>5.03</b>
             </td>
          </tr>
       </table>
@@ -126,6 +130,9 @@
       <h2>Contents</h2>
       <ul>
          <li>
+            <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+         </li>
+         <li>
             <a href="#Details">Details</a>
          </li>
       </ul>
@@ -137,17 +144,55 @@
          </tr>
          <tr class="tablerow0">
             <td>
+               <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>0</b>
+               <b>1</b>
             </td>
          </tr>
       </table>
       <h1>Warnings</h1>
       <p>Click on a warning row to see full context information.</p>
+      <h2>
+         <a name="Warnings_PERFORMANCE">Performance Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e83');">
+            <td>
+               <span class="priority-2">Dm</span>
+            </td>
+            <td>com.crio.starter.controller.CustomerController.test(String) invokes inefficient new String(String) constructor</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e83" style="display: none;">
+                  <a href="#DM_STRING_CTOR">Bug type DM_STRING_CTOR (click for details)</a>
+                  <br/>In class com.crio.starter.controller.CustomerController<br/>In method com.crio.starter.controller.CustomerController.test(String)<br/>At CustomerController.java:[line 34]</p>
+            </td>
+         </tr>
+      </table>
       <h1>
          <a name="Details">Details</a>
       </h1>
-   </body>
+      <h2>
+         <a name="DM_STRING_CTOR">DM_STRING_CTOR: Method invokes inefficient new String(String) constructor</a>
+      </h2>
+
+  <p> Using the <code>java.lang.String(String)</code> constructor wastes memory
+  because the object so constructed will be functionally indistinguishable
+  from the <code>String</code> passed as a parameter.&nbsp; Just use the
+  argument <code>String</code> directly.</p>
+
+    </body>
 </html>
