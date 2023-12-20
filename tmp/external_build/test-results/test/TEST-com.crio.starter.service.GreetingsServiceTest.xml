@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.crio.starter.service.GreetingsServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-20T18:47:56" hostname="LEVI_TWENTY3" time="0.073">
+  <properties/>
+  <testcase name="getMessage()" classname="com.crio.starter.service.GreetingsServiceTest" time="0.073"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
