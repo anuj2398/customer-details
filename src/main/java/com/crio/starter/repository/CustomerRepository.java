@@ -1,5 +1,7 @@
 package com.crio.starter.repository;
 
-public class CustomerRepository {
-    
-}
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.crio.starter.data.Customer;
+
+

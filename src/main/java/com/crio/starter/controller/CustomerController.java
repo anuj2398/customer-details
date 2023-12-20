@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class CustomerController {
 
     @Autowired
-    private final CustomerService customerService;
+    private CustomerService customerService;
 
     @GetMapping("/test")
     public String test(@PathVariable String name) {
@@ -58,7 +58,7 @@ public class CustomerController {
         }
     }
     @PutMapping("/update/{customerId}")
-    public ResponseEntity<String> update(@PathVariable String customerId, @RequestBody Customer req) {
+    public ResponseEntity<String> update(@PathVariable String customerId, @RequestBody CustomerDetailsRequest req) {
         try {
                 customerService.updateCustomer(customerId,req);
                 return new ResponseEntity<>("Customer Data Successfully Updated...",HttpStatus.OK);
@@ -75,4 +75,5 @@ public class CustomerController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     
+}
 }
