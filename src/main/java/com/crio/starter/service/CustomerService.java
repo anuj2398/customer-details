@@ -1,13 +1,12 @@
 package com.crio.starter.service;
 
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.crio.starter.data.Customer;
 import com.crio.starter.enums.CustomerGroup;
 import com.crio.starter.enums.Occupation;
@@ -22,7 +21,22 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public void addCustomer(CustomerDetailsRequest req) {
-        validateAndAssignCustomerGroup(req);
+        if(isBelow18Years(req.getDob())){
+            throw new AgeBelow18Exception("Age is below 18");
+        }
+        Occupation occupation = req.getOccupation();
+        if(req.getEmail().endsWith("@hikeon.tech")){
+            req.setCustomerGroup(CustomerGroup.HIKEON);
+        }
+        else if (occupation.equals(Occupation.DEVELOPER)) {
+            req.setCustomerGroup(CustomerGroup.DEVELOPER);
+        }
+        else if(occupation.equals(Occupation.CHEF)){
+            req.setCustomerGroup(CustomerGroup.CHEF);
+        }
+        else {
+            req.setCustomerGroup(CustomerGroup.NA);
+        }
         Customer customer=new Customer(req.getName(), req.getEmail(), req.getDob(), req.getOccupation(), req.getCustomerGroup());
         customerRepository.save(customer);
     }
@@ -36,8 +50,23 @@ public class CustomerService {
         return optionalCustomer.orElse(null);
     }
 
-    public Customer updateCustomer(String customerId, CustomerDetailsRequest req) {
-        //validateAndAssignCustomerGroup(req);
+    public Customer updateCustomer(String customerId,CustomerDetailsRequest req) {
+        if(isBelow18Years(req.getDob())){
+            throw new AgeBelow18Exception("Age is below 18");
+        }
+        Occupation occupation = req.getOccupation();
+        if(req.getEmail().endsWith("@hikeon.tech")){
+            req.setCustomerGroup(CustomerGroup.HIKEON);
+        }
+        else if (occupation.equals(Occupation.DEVELOPER)) {
+            req.setCustomerGroup(CustomerGroup.DEVELOPER);
+        }
+        else if(occupation.equals(Occupation.CHEF)){
+            req.setCustomerGroup(CustomerGroup.CHEF);
+        }
+        else {
+            req.setCustomerGroup(CustomerGroup.NA);
+        }
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
         if (optionalCustomer.isPresent()) {
             Customer existingCustomer = optionalCustomer.get();
@@ -72,31 +101,31 @@ public class CustomerService {
     Period age = Period.between(birthDate, currentDate);
     return age.getYears() < 18;  
     }
-    private void validateAndAssignCustomerGroup(CustomerDetailsRequest request) {
+    // private void validateAndAssignCustomerGroup(CustomerDetailsRequest request) {
     
-        // Assign customer group based on email domain
-        if (request.getEmail().endsWith("@hikeon.tech")) {
-            request.setCustomerGroup(CustomerGroup.HIKEON);
-        }
+    //     // Assign customer group based on email domain
+    //     if (request.getEmail().contains("hikeon")) {
+    //         request.setCustomerGroup(CustomerGroup.HIKEON);
+    //     }
     
-        // Assign customer group based on occupation
-        Occupation occupation = request.getOccupation();
-        if (occupation.equals(Occupation.DEVELOPER)) {
-            request.setCustomerGroup(CustomerGroup.DEVELOPER);
-        }
-        else if(occupation.equals(Occupation.CHEF)){
-            request.setCustomerGroup(CustomerGroup.CHEF);
-        }
-        else {
-            request.setCustomerGroup(CustomerGroup.NA);
-        }
-        // You can add additional rules based on your requirements
+    //     // Assign customer group based on occupation
+    //     Occupation occupation = request.getOccupation();
+    //     if (occupation.equals(Occupation.DEVELOPER)) {
+    //         request.setCustomerGroup(CustomerGroup.DEVELOPER);
+    //     }
+    //     else if(occupation.equals(Occupation.CHEF)){
+    //         request.setCustomerGroup(CustomerGroup.CHEF);
+    //     }
+    //     else {
+    //         request.setCustomerGroup(CustomerGroup.NA);
+    //     }
+    //     // You can add additional rules based on your requirements
     
-        // For customers below 18 years old, throw an error
-        // Note: This is just a placeholder; you should implement proper date of birth validation
-        // in a real-world scenario
-        if (isBelow18Years(request.getDob())) {
-            throw new AgeBelow18Exception("Customers below 18 years old are not allowed.");
-        }
-    }
+    //     // For customers below 18 years old, throw an error
+    //     // Note: This is just a placeholder; you should implement proper date of birth validation
+    //     // in a real-world scenario
+    //     if (isBelow18Years(request.getDob())) {
+    //         throw new AgeBelow18Exception("Customers below 18 years old are not allowed.");
+    //     }
+    // }
 }
