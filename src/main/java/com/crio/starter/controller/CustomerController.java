@@ -58,12 +58,12 @@ public class CustomerController {
         }
     }
     @PutMapping("/update/{customerId}")
-    public ResponseEntity<String> update(@PathVariable String customerId, @RequestBody CustomerDetailsRequest req) {
+    public ResponseEntity<Customer> update(@PathVariable String customerId, @RequestBody CustomerDetailsRequest req) {
         try {
-                customerService.updateCustomer(customerId,req);
-                return new ResponseEntity<>("Customer Data Successfully Updated...",HttpStatus.OK);
+                Customer updatedCustomer=customerService.updateCustomer(customerId,req);
+                return new ResponseEntity<>(updatedCustomer,HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
     @DeleteMapping("/delete/{customerId}")

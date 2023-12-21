@@ -36,8 +36,8 @@ public class CustomerService {
         return optionalCustomer.orElse(null);
     }
 
-    public void updateCustomer(String customerId, CustomerDetailsRequest req) {
-        validateAndAssignCustomerGroup(req);
+    public Customer updateCustomer(String customerId, CustomerDetailsRequest req) {
+        //validateAndAssignCustomerGroup(req);
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
         if (optionalCustomer.isPresent()) {
             Customer existingCustomer = optionalCustomer.get();
@@ -46,6 +46,8 @@ public class CustomerService {
             existingCustomer.setDob(req.getDob());
             existingCustomer.setCustomerGroup(req.getCustomerGroup());
             existingCustomer.setOccupation(req.getOccupation());
+            customerRepository.save(existingCustomer);
+            return existingCustomer;
         }else{
             throw new CustomerNotFoundException("Customer with ID:"+customerId+" not found");
         }
@@ -71,8 +73,6 @@ public class CustomerService {
     return age.getYears() < 18;  
     }
     private void validateAndAssignCustomerGroup(CustomerDetailsRequest request) {
-        // Assign the default customer group initially
-        request.setCustomerGroup(CustomerGroup.NA);
     
         // Assign customer group based on email domain
         if (request.getEmail().endsWith("@hikeon.tech")) {
