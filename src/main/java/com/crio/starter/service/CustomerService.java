@@ -91,41 +91,11 @@ public class CustomerService {
         }
     }
     private boolean isBelow18Years(String dob) {
-    // Implement proper date of birth validation logic to determine if the customer is below 18 years old
-    // This is a placeholder; you should use a date library or convert the string to a date object for accurate validation
-    // For simplicity, let's assume the date of birth is in the format "yyyy-MM-dd"
-    // and calculate age based on the current date
-    // Note: You may want to handle exceptions and edge cases in a real-world scenario
+
     LocalDate birthDate = LocalDate.parse(dob);
     LocalDate currentDate = LocalDate.now();
     Period age = Period.between(birthDate, currentDate);
     return age.getYears() < 18;  
     }
-    // private void validateAndAssignCustomerGroup(CustomerDetailsRequest request) {
     
-    //     // Assign customer group based on email domain
-    //     if (request.getEmail().contains("hikeon")) {
-    //         request.setCustomerGroup(CustomerGroup.HIKEON);
-    //     }
-    
-    //     // Assign customer group based on occupation
-    //     Occupation occupation = request.getOccupation();
-    //     if (occupation.equals(Occupation.DEVELOPER)) {
-    //         request.setCustomerGroup(CustomerGroup.DEVELOPER);
-    //     }
-    //     else if(occupation.equals(Occupation.CHEF)){
-    //         request.setCustomerGroup(CustomerGroup.CHEF);
-    //     }
-    //     else {
-    //         request.setCustomerGroup(CustomerGroup.NA);
-    //     }
-    //     // You can add additional rules based on your requirements
-    
-    //     // For customers below 18 years old, throw an error
-    //     // Note: This is just a placeholder; you should implement proper date of birth validation
-    //     // in a real-world scenario
-    //     if (isBelow18Years(request.getDob())) {
-    //         throw new AgeBelow18Exception("Customers below 18 years old are not allowed.");
-    //     }
-    // }
 }
