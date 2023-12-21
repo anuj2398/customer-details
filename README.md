@@ -9,10 +9,10 @@
 
 #The API will be available at http://localhost:8080/api/customers.
 ##Endpoints
-POST /api/customers/add: Add a new customer.
-GET /api/customers/getAll: Retrieve a list of all customers.
-GET /api/customers/get/{customerId}: Retrieve a specific customer by ID.
-PUT /api/customers/update/{customerId}: Update customer details.
-DELETE /api/customers/delete/{customerId}: Delete a customer by ID.
+POST /api/customers/add: Add a new customer. \
+GET /api/customers/getAll: Retrieve a list of all customers. \
+GET /api/customers/get/{customerId}: Retrieve a specific customer by ID. \
+PUT /api/customers/update/{customerId}: Update customer details. \
+DELETE /api/customers/delete/{customerId}: Delete a customer by ID. 
 License - 
 While this repository is licensed under APACHE 2.0 license, It is mandatory for users to share the readme.md and License file along with the changes they do in the contents.
